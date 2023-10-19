@@ -36,10 +36,8 @@ def figures_to_html(figs, filename):
     Saves a list of plotly figures in an html file.
 
     Parameters
-    ----------
     figs : list[plotly.graph_objects.Figure]
         List of plotly figures to be saved.
-
     filename : str
         File name to save in.
     '''
@@ -56,12 +54,25 @@ def figures_to_html(figs, filename):
 
 
 def CreateFigure(logname):
+    '''
+    Creates a plotly figure from a log file.
+
+    Parameters
+    logname : str
+        Name of the log file to be read.
+    '''
+    # Create path of input log
     path = "../" + inputFolder + "/" + logname
+
+    # Read log file into pandas dataframe
     df = pd.read_csv(path, skiprows=1, header=None, names=cols)
+
+    # Convert time to seconds
     df["time(s)"]=df["start_us"]/(10**6)
-    
-    # create graph of 
+
+    # Modify this line: add/remove columns to plot
     fig = px.line(df, x="time(s)", y=["engine_count"])
+
     fig.update_layout(hovermode="x unified", title=logname[:-4])
     return fig
 
