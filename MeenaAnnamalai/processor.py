@@ -6,6 +6,8 @@ import plotly.offline as pyo
 inputFolder = "INPUT"
 logName = "log_2023-04-14_19-46-54_paige-drive-to-garage-spinout-error.txt"
 
+
+
 cols = [
     "dt_us",
     "voltage",
